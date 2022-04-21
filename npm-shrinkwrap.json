@@ -1,0 +1,10 @@
+{
+  "name": "Scrimba",
+  "lockfileVersion": 2,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "Scrimba"
+    }
+  }
+}
