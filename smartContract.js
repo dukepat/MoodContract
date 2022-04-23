@@ -1,33 +1,27 @@
-
 outputEl = document.getElementById("output-el")
 window.ethereum.enable();
 var provider = new ethers.providers.Web3Provider(
     web3.currentProvider,
     "ropsten"
-    );
+);
 var MoodContractAddress = "0x4f659b6dFAeF69e56d30AEbA1491e7bbbAEF488f";
-var MoodContractABI = [
-    {
+var MoodContractABI = [{
         "inputs": [],
         "name": "getMood",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }
-        ],
+        "outputs": [{
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+        }],
         "stateMutability": "view",
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "string",
-                "name": "_mood",
-                "type": "string"
-            }
-        ],
+        "inputs": [{
+            "internalType": "string",
+            "name": "_mood",
+            "type": "string"
+        }],
         "name": "setMood",
         "outputs": [],
         "stateMutability": "nonpayable",
@@ -37,7 +31,7 @@ var MoodContractABI = [
 var MoodContract;
 var signer;
 
-provider.listAccounts().then(function (accounts) {
+provider.listAccounts().then(function(accounts) {
     signer = provider.getSigner(accounts[0]);
     MoodContract = new ethers.Contract(
         MoodContractAddress,
@@ -50,7 +44,7 @@ async function getMood() {
     getMoodPromise = MoodContract.getMood();
     var Mood = await getMoodPromise;
     console.log(Mood);
-    outputEl.textContent = Mood
+    outputEl.textContent = "Current Mood: " + Mood
 }
 async function setMood() {
     let mood = document.getElementById("mood").value;
